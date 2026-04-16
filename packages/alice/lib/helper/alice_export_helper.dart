@@ -38,11 +38,12 @@ class AliceExportHelper {
         error: AliceExportResultError.logGenerate,
       );
     }
-
+    final box = context.findRenderObject() as RenderBox;
     await SharePlus.instance.share(
       ShareParams(
         text: callLog,
         subject: context.i18n(AliceTranslationKey.emailSubject),
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
       ),
     );
 
